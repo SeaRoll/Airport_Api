@@ -1,0 +1,6 @@
+com.yohanjoo.airportapi
+com.yohanjoo.airportapi.controller
+com.yohanjoo.airportapi.database
+com.yohanjoo.airportapi.model
+com.yohanjoo.airportapi.repository
+com.yohanjoo.airportapi.service

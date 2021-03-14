@@ -15,11 +15,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Configuration when database loads
+ * @author Yo Han Joo
+ * @since 0.0.1-SNAPSHOT
+ */
 @Configuration
 public class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
+    /**
+     * Reads from airports.csv file and adds them to the repository
+     *
+     * @param repository repository of the Airports.
+     * @return if successfull, "Preloaded Database!"
+     */
     @Bean
     CommandLineRunner initDatabase(AirportRepository repository) {
         try (CSVReader reader = new CSVReader(new FileReader("airports.csv"))) {
