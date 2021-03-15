@@ -4,3 +4,4 @@ com.yohanjoo.airportapi.database
 com.yohanjoo.airportapi.model
 com.yohanjoo.airportapi.repository
 com.yohanjoo.airportapi.service
+com.yohanjoo.airportapi.util

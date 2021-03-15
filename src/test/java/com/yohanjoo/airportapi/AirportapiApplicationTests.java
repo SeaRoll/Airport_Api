@@ -1,7 +1,6 @@
 package com.yohanjoo.airportapi;
 
 import com.yohanjoo.airportapi.controller.AirportController;
-import com.yohanjoo.airportapi.model.Airport;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,5 +35,10 @@ public class AirportapiApplicationTests {
         assertThat(airportController.getAirportsByCountry("NANANANANA").contains(null));
     }
 
-
+    @Test
+    public void shouldGetNmWithDistance() throws Exception {
+        System.out.println(airportController.getDistanceBetweenTwoAirports("ESSA", "EKCH"));
+        assertThat(airportController.getDistanceBetweenTwoAirports("ESSA", "EKCH")).isInstanceOf(Integer.class);
+        assertThat(airportController.getDistanceBetweenTwoAirports("ESSA", "EKCH")).isEqualTo(295);
+    }
 }

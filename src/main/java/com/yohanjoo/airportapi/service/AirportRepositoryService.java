@@ -2,6 +2,7 @@ package com.yohanjoo.airportapi.service;
 
 import com.yohanjoo.airportapi.model.Airport;
 import com.yohanjoo.airportapi.repository.AirportRepository;
+import com.yohanjoo.airportapi.util.Calculations;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -57,5 +58,17 @@ public class AirportRepositoryService {
                 .filter(airport -> airport.getIso_country().equals(iso_country))
                 .collect(Collectors.toList());
         return allAirports;
+    }
+
+    /**
+     * Converts idents to airport objects and return distance between them
+     * @param ident1 Airport 1 ICAO
+     * @param ident2 Airport 2 ICAO
+     * @return distance in nautical miles
+     */
+    public int distanceBetweenTwoAirports(String ident1, String ident2) {
+        Airport airport1 = findByIdent(ident1);
+        Airport airport2 = findByIdent(ident2);
+        return Calculations.calculateDistance(airport1.getLatitude(), airport1.getLongitude(), airport2.getLatitude(), airport2.getLongitude());
     }
 }

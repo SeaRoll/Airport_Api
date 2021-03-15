@@ -39,7 +39,6 @@ public class LoadDatabase {
                 String[] coo = x[11].split(",");
                 String airportType = x[1];
                 if((coo.length > 1) && (airportType.equals("small_airport") || airportType.equals("medium_airport") || airportType.equals("large_airport"))) {
-                    log.info("Saving airports to repository");
                     repository.save(new Airport(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11]));
                 }
             }
