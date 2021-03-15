@@ -44,6 +44,7 @@ public class AirportController {
      * Get airport with specifi ICAO code
      * type: GET
      * mapping: "/api/airports/ident/{ident}"
+     * @param ident ICAO code of airport
      * @return returns airport corresponding to ICAO code entered
      */
     @GetMapping("/ident/{ident}")
@@ -55,6 +56,7 @@ public class AirportController {
      * Get airports in a country
      * type: GET
      * mapping: "/api/airports/iso_country/{iso_country}"
+     * @param iso_country Country in 2-code format
      * @return returns list of airports in that country
      */
     @GetMapping("/iso_country/{iso_country}")

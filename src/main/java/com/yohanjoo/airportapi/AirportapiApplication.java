@@ -3,6 +3,11 @@ package com.yohanjoo.airportapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Main Application
+ * @author Yo Han Joo
+ * @since 0.0.1-SNAPSHOT
+ */
 @SpringBootApplication
 public class AirportapiApplication {
 
