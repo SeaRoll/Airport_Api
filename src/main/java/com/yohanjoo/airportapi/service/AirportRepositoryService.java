@@ -3,7 +3,6 @@ package com.yohanjoo.airportapi.service;
 import com.yohanjoo.airportapi.model.Airport;
 import com.yohanjoo.airportapi.repository.AirportRepository;
 import com.yohanjoo.airportapi.util.Calculations;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +56,11 @@ public class AirportRepositoryService {
         allAirports = allAirports.stream()
                 .filter(airport -> airport.getIso_country().equals(iso_country))
                 .collect(Collectors.toList());
-        return allAirports;
+
+        if(allAirports.size() > 0)
+            return allAirports;
+        else
+            return null;
     }
 
     /**
