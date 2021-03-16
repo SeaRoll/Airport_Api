@@ -1,5 +1,10 @@
 package com.yohanjoo.airportapi.util;
 
+import com.yohanjoo.airportapi.model.Airport;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Performs calculations
  * @author Yo Han Joo
@@ -33,5 +38,29 @@ public class Calculations {
         double rad = RADIUS;
         double c = 2 * Math.asin(Math.sqrt(a));
         return (int)(rad * c);
+    }
+
+    /**
+     * Returns list of airports within set of distances
+     * @param refAirport main airport
+     * @param allAirports all airports
+     * @param minDistance minimum distance
+     * @param maxDistance maximum distance
+     * @return list of airports within distance
+     */
+    public static List<Airport> AirportsWithinDistance(Airport refAirport, List<Airport> allAirports, int minDistance, int maxDistance) {
+        List<Airport> airportsInDistance = new ArrayList<>();
+
+        for(Airport airport : allAirports) {
+            int distance = calculateDistance(refAirport.getLatitude(), refAirport.getLongitude(), airport.getLatitude(), airport.getLongitude());
+            if(distance >= minDistance && distance <= maxDistance && !airport.equals(refAirport)) {
+                airportsInDistance.add(airport);
+            }
+        }
+
+        if(airportsInDistance.size() > 0)
+            return airportsInDistance;
+        else
+            return null;
     }
 }

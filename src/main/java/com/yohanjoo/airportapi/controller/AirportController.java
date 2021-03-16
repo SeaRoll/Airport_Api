@@ -100,4 +100,16 @@ public class AirportController {
     public int getDistanceBetweenTwoAirports(@PathVariable(name = "airport1_ident") String ident1, @PathVariable(name = "airport2_ident") String ident2) {
         return airportRepositoryService.distanceBetweenTwoAirports(ident1, ident2);
     }
+
+    /**
+     * Get all airports within distance
+     * @param ident reference airport
+     * @param minDistance minimum distance
+     * @param maxDistance maximum distance
+     * @return airports within given distance
+     */
+    @GetMapping("/distance/all/{ident}/{minDistance}/{maxDistance}")
+    public List<Airport> getAirportsWithinDistance(@PathVariable String ident, @PathVariable int minDistance, @PathVariable int maxDistance) {
+        return airportRepositoryService.airportsInDistance(ident, minDistance, maxDistance);
+    }
 }

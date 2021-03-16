@@ -73,6 +73,11 @@ public class AirportRepositoryService {
         return allAirports;
     }
 
+    /**
+     * Searches for airports with continent (2-code)
+     * @param continent 2-digit code of continent
+     * @return all airports in that continent
+     */
     public List<Airport> findByContinent(String continent) {
         List<Airport> allAirports = findAll();
         allAirports = allAirports.stream()
@@ -91,5 +96,17 @@ public class AirportRepositoryService {
         Airport airport1 = findByIdent(ident1);
         Airport airport2 = findByIdent(ident2);
         return Calculations.calculateDistance(airport1.getLatitude(), airport1.getLongitude(), airport2.getLatitude(), airport2.getLongitude());
+    }
+
+    /**
+     * Returns all airports with distance in NM
+     * @param refAirportIdent reference airport ICAO code
+     * @param minDistance minimum distance
+     * @param maxDistance maximum distance
+     * @return airports within distance
+     */
+    public List<Airport> airportsInDistance(String refAirportIdent, int minDistance, int maxDistance) {
+        Airport refAirport = findByIdent(refAirportIdent);
+        return Calculations.AirportsWithinDistance(refAirport, findAll(), minDistance, maxDistance);
     }
 }

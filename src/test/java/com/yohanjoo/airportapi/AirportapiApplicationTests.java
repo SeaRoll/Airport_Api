@@ -1,6 +1,8 @@
 package com.yohanjoo.airportapi;
 
 import com.yohanjoo.airportapi.controller.AirportController;
+import com.yohanjoo.airportapi.model.Airport;
+import com.yohanjoo.airportapi.util.Calculations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -88,5 +90,24 @@ public class AirportapiApplicationTests {
         for (String region : regions) {
             assertThat(airportController.getAirportsByContinent(region)).isInstanceOf(List.class);
         }
+    }
+
+    /**
+     * Checks that list is get when airports, within distance is called
+     */
+    @Test
+    public void shouldGetListWithDistance() {
+        Airport refAirport = airportController.getSpecificAirport("ESSA");
+        List<Airport> airports = airportController.getAllAirports();
+        assertThat(Calculations.AirportsWithinDistance(refAirport, airports, 0, 300)).isInstanceOf(List.class);
+        assertThat(airportController.getAirportsWithinDistance("ESSA", 0, 300)).isInstanceOf(List.class);
+    }
+
+    /**
+     * Should give null if distance is minus
+     */
+    @Test
+    public void shouldGetNullWithMinusDistance() {
+        assertThat(airportController.getAirportsWithinDistance("ESSA", -5, 0)).isNull();
     }
 }
