@@ -1,18 +1,10 @@
 package com.yohanjoo.airportapi;
 
 import com.yohanjoo.airportapi.controller.AirportController;
-import com.yohanjoo.airportapi.model.Airport;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,46 +21,41 @@ public class AirportapiApplicationTests {
 
     /**
      * Checks that airport controller loads in testing phase
-     * @throws Exception if an error occurs
      */
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         assertThat(airportController).isNotNull();
     }
 
     /**
      * Checks that all airports should return List class
-     * @throws Exception if an error occurs
      */
     @Test
-    public void shouldGetAllAirports() throws Exception {
+    public void shouldGetAllAirports() {
         assertThat(airportController.getAllAirports()).isInstanceOf(List.class);
     }
 
     /**
      * Checks that SE (Sweden) country returns a list
-     * @throws Exception if an error occurs
      */
     @Test
-    public void shouldNotBeNullWithAnExistingCountry() throws Exception {
+    public void shouldNotBeNullWithAnExistingCountry() {
         assertThat(airportController.getAirportsByCountry("SE")).isInstanceOf(List.class);
     }
 
     /**
      * Checks that it returns null if it's a non existing country
-     * @throws Exception if an error occurs
      */
     @Test
-    public void shouldGetNullByCountryThatDoesNotExist() throws Exception {
-        assertThat(airportController.getAirportsByCountry("NANANANANA").contains(null));
+    public void shouldGetNullByCountryThatDoesNotExist() {
+        assertThat(airportController.getAirportsByCountry("BANANA")).isNull();
     }
 
     /**
      * Checks that ESSA - EKCH should return Integer and is equal to 295NM
-     * @throws Exception if an error occurs
      */
     @Test
-    public void shouldGetNmWithDistance() throws Exception {
+    public void shouldGetNmWithDistance() {
         System.out.println(airportController.getDistanceBetweenTwoAirports("ESSA", "EKCH"));
         assertThat(airportController.getDistanceBetweenTwoAirports("ESSA", "EKCH")).isInstanceOf(Integer.class);
         assertThat(airportController.getDistanceBetweenTwoAirports("ESSA", "EKCH")).isEqualTo(295);
@@ -76,20 +63,18 @@ public class AirportapiApplicationTests {
 
     /**
      * Checks that list should be returned with all regions
-     * @throws Exception if an error occurs
      */
     @Test
-    public void shouldGetListWithNARegion() throws Exception {
+    public void shouldGetListWithNARegion() {
         assertThat(airportController.getAirportsByRegion("NA")).isInstanceOf(List.class);
     }
 
 
     /**
      * Checks that all continents returns a list
-     * @throws Exception if an error occurs
      */
     @Test
-    public void shouldGetListWithAllContinents() throws Exception {
+    public void shouldGetListWithAllContinents() {
         String[] regions = {
                 "EU",
                 "AS",

@@ -122,7 +122,7 @@ public class Airport {
      * @param type which type it should set to
      */
     public void setType(String type) {
-        if(type == "small_airport" || type == "medium_airport" || type == "large_airport")
+        if(type.equals("small_airport") || type.equals("medium_airport") || type.equals("large_airport") )
             this.type = type;
     }
 
