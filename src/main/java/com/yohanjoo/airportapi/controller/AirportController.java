@@ -65,6 +65,30 @@ public class AirportController {
     }
 
     /**
+     * Get airports in a country region
+     * type: GET
+     * mapping: "/api/airports/iso_region/{region}
+     * @param iso_region Region in 2-code format
+     * @return returns list of airports in that country region
+     */
+    @GetMapping("/iso_region/{iso_region}")
+    public List<Airport> getAirportsByRegion(@PathVariable String iso_region) {
+        return airportRepositoryService.findByIsoRegion(iso_region);
+    }
+
+    /**
+     * Get airports in a continent
+     * type: GET
+     * mapping: "/api/airports/continent/{continent}
+     * @param continent continents 2-code format
+     * @return returns list of airports in that continent
+     */
+    @GetMapping("/continent/{continent}")
+    public List<Airport> getAirportsByContinent(@PathVariable String continent) {
+        return airportRepositoryService.findByContinent(continent);
+    }
+
+    /**
      * Get distance between two airports
      * type: GET
      * mapping: "/api/airports/distance/{airport1_ident}/{airport2_ident}

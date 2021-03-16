@@ -61,6 +61,27 @@ public class AirportRepositoryService {
     }
 
     /**
+     * Searches airports by ISO-Region (region) code
+     * @param iso_region 2-digit code of region
+     * @return all airports in that region
+     */
+    public List<Airport> findByIsoRegion(String iso_region) {
+        List<Airport> allAirports = findAll();
+        allAirports = allAirports.stream()
+                .filter(airport -> airport.getIso_region().equals(iso_region))
+                .collect(Collectors.toList());
+        return allAirports;
+    }
+
+    public List<Airport> findByContinent(String continent) {
+        List<Airport> allAirports = findAll();
+        allAirports = allAirports.stream()
+                .filter(airport -> airport.getIso_region().equals(continent))
+                .collect(Collectors.toList());
+        return allAirports;
+    }
+
+    /**
      * Converts idents to airport objects and return distance between them
      * @param ident1 Airport 1 ICAO
      * @param ident2 Airport 2 ICAO
